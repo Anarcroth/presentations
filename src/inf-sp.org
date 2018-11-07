@@ -1,0 +1,92 @@
+#+REVEAL_THEME: moon
+#+REVEAL_TRANS: zoom
+#+REVEAL_SPEED: 0.5
+#+REVEAL_HLEVEL: 1
+#+REVEAL_MARGIN: 7
+#+REVEAL_MIN_SCALE: 1
+#+REVEAL_MAX_SCALE: 2
+#+REVEAL_PLUGINS: (classList markdown highlight zoom notes multiplex)
+#+Title: INF Senior Project
+#+Author: Martin Nestorov
+#+OPTIONS: toc:nil reveal_slide_number:c/t num:nil reveal_center
+
+* What is an Interactive CV?
+
+#+BEGIN_NOTES
+Hello! I am Martin Nestorov, currently doing an INF Senior Project, called Interactive CV. This is a Web Application, which emulates an old-styled terminal, that allows for the user to input/upload his/her data and to show off what they have done - effectively making it a CV. The motivation for doing a CV like this is, because on one hand I have never been satisfied with how CV are made, and I want to handle my data the way I want to. I want people to have fun and play around with what I have made, instead of just looking at a piece of paper and evaluating me in 5 min. The other reasoning is that I am very interested in File Systems and emulators, so naturally this is a great project for me to create a virtual file system that builds a console emulator in the browser. It's a good academic exercise.
+#+END_NOTES
+
+* Requirements
+
+- Functional
+- Non-Functional
+
+** Functional
+
+#+ATTR_REVEAL: :frag (roll-in)
+- Heavy data load handle
+- Gather resources from the internet
+- Manage files
+- Printable
+- Easily distributes user data
+
+** Non-Functional
+
+#+ATTR_REVEAL: :frag (roll-in)
+- Lightweight
+- Scalable
+- Easily distributes whole application
+- Easy to start
+- Easy to setup
+
+* Technologies used
+
+#+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
+[[../pics/techused.png]]
+
+
+#+BEGIN_NOTES
+For this project I decided to go with something I don't have that much experience in. Although I know the just of JS, it's gonna be a learning experience to create all of these low level technologies in such a high level language, running in the browser.
+
+In addition to vanilla JS, I am also using NodeJS plus Express JS to jump start my server. I am also using Morgan JS for logging.
+#+END_NOTES
+
+* Architecture used
+
+Highly modulated => One framework that you can plug in small modules.
+
+#+BEGIN_NOTES
+I would say that my architecture follows a very modulated pattern. I don't need an MVC. It's closer to having a layer structure, where I have one framework, the VFS, that allows for many small and different functionalities can be plugged in.
+#+END_NOTES
+
+* So far what's been done
+
+- project['file-system'] = "done";
+- project['basic front-end'] = "done";
+- project['terminal commands'] = "done";
+- project['web crawler'] = "in-progress";
+- project['cookies'] = "in-progress";
+
+#+BEGIN_NOTES
+Currently, the project supports a working virtual file system, that connects to the front-end, parses, and execute different UNIX commands. In addition to this, I am working on two things, having cookies and a web crawler. The cookies allow for viewers to create files on a foreign VFS, and the web crawler gathers data if the user has citations and displays statistics about that.
+#+END_NOTES
+
+* What's left to do
+
+*TODO*
+
+- Setup wizard
+- Installer
+- Printable CV
+- More File types support
+
+#+BEGIN_NOTES
+Apart from the things that are in current progress, there is always something to be added and appended to the project. Such things include an installer, to make using the app easy, a setup wizard, a print functionality to output most important data, more file types support.
+#+END_NOTES
+
+* References
+
+- [[https://en.wikipedia.org/wiki/Btrfs][BTRFS]]
+- [[http://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf][File System Implementation]]
+- [[http://ext2.sourceforge.net/2005-ols/paper-html/node3.html][Directory indexing]]
+- [[http://www.science.unitn.it/~fiorella/guidelinux/tlk/node94.html][The UNIX File System]]

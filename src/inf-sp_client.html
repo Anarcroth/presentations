@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>INF Senior Project</title>
+<meta name="author" content="(Martin Nestorov)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///home/anarcroth/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="file:///home/anarcroth/reveal.js/css/theme/moon.css" id="theme"/>
+
+<link rel="stylesheet" href="file:///home/anarcroth/reveal.js/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'file:///home/anarcroth/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">INF Senior Project</h1><h2 class="author">Martin Nestorov</h2><p class="date">Created: 2018-11-13 Tue 16:50</p>
+</section>
+
+<section>
+<section id="slide-org7f845d8">
+<h2 id="org7f845d8">What is an Interactive CV?</h2>
+<aside class="notes">
+<p>
+Hello! I am Martin Nestorov, currently doing an INF Senior Project, called Interactive CV. This is a Web Application, which emulates an old-styled terminal, that allows for the user to input/upload his/her data and to show off what they have done - effectively making it a CV. The motivation for doing a CV like this is, because on one hand I have never been satisfied with how CV are made, and I want to handle my data the way I want to. I want people to have fun and play around with what I have made, instead of just looking at a piece of paper and evaluating me in 5 min. The other reasoning is that I am very interested in File Systems and emulators, so naturally this is a great project for me to create a virtual file system that builds a console emulator in the browser. It's a good academic exercise.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org58ea42e">
+<h2 id="org58ea42e">Requirements</h2>
+<ul>
+<li>Functional</li>
+<li>Non-Functional</li>
+
+</ul>
+
+</section>
+<section id="slide-org411eea8">
+<h3 id="org411eea8">Functional</h3>
+<ul>
+<li class="fragment roll-in">Heavy data load handle</li>
+<li class="fragment roll-in">Gather resources from the internet</li>
+<li class="fragment roll-in">Manage files</li>
+<li class="fragment roll-in">Printable</li>
+<li class="fragment roll-in">Easily distributes user data</li>
+
+</ul>
+
+</section>
+<section id="slide-org20388b7">
+<h3 id="org20388b7">Non-Functional</h3>
+<ul>
+<li class="fragment roll-in">Lightweight</li>
+<li class="fragment roll-in">Scalable</li>
+<li class="fragment roll-in">Easily distributes whole application</li>
+<li class="fragment roll-in">Easy to start</li>
+<li class="fragment roll-in">Easy to setup</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc34b115">
+<h2 id="orgc34b115">Technologies used</h2>
+
+<div class="figure">
+<p><img src="../pics/techused.png" alt="techused.png" width="90%" height="90%" style="border:0px solid black;" />
+</p>
+</div>
+
+
+<aside class="notes">
+<p>
+For this project I decided to go with something I don't have that much experience in. Although I know the just of JS, it's gonna be a learning experience to create all of these low level technologies in such a high level language, running in the browser.
+</p>
+
+<p>
+In addition to vanilla JS, I am also using NodeJS plus Express JS to jump start my server. I am also using Morgan JS for logging.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd95cb45">
+<h2 id="orgd95cb45">Architecture used</h2>
+<p>
+Highly modulated =&gt; One framework that you can plug in small modules.
+</p>
+
+<aside class="notes">
+<p>
+I would say that my architecture follows a very modulated pattern. I don't need an MVC. It's closer to having a layer structure, where I have one framework, the VFS, that allows for many small and different functionalities can be plugged in.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc2fb8c2">
+<h2 id="orgc2fb8c2">So far what's been done</h2>
+<ul>
+<li>project['file-system'] = "done";</li>
+<li>project['basic front-end'] = "done";</li>
+<li>project['terminal commands'] = "done";</li>
+<li>project['web crawler'] = "in-progress";</li>
+<li>project['cookies'] = "in-progress";</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Currently, the project supports a working virtual file system, that connects to the front-end, parses, and execute different UNIX commands. In addition to this, I am working on two things, having cookies and a web crawler. The cookies allow for viewers to create files on a foreign VFS, and the web crawler gathers data if the user has citations and displays statistics about that.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org726f577">
+<h2 id="org726f577">What's left to do</h2>
+<p>
+<b>TODO</b>
+</p>
+
+<ul>
+<li>Setup wizard</li>
+<li>Installer</li>
+<li>Printable CV</li>
+<li>More File types support</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Apart from the things that are in current progress, there is always something to be added and appended to the project. Such things include an installer, to make using the app easy, a setup wizard, a print functionality to output most important data, more file types support.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org7dfb337">
+<h2 id="org7dfb337">References</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Btrfs">BTRFS</a></li>
+<li><a href="http://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf">File System Implementation</a></li>
+<li><a href="http://ext2.sourceforge.net/2005-ols/paper-html/node3.html">Directory indexing</a></li>
+<li><a href="http://www.science.unitn.it/~fiorella/guidelinux/tlk/node94.html">The UNIX File System</a></li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="file:///home/anarcroth/reveal.js/lib/js/head.min.js"></script>
+<script src="file:///home/anarcroth/reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c/t',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+margin: 7.00,
+minScale: 1.00,
+maxScale: 2.00,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'zoom', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: '0.5',
+multiplex: {
+    secret: null, // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'file:///home/anarcroth/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'file:///home/anarcroth/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///home/anarcroth/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///home/anarcroth/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+ { src: 'file:///home/anarcroth/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'file:///home/anarcroth/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: '', async: true },
+ { src: 'file:///home/anarcroth/reveal.js/plugin/multiplex/client.js', async: true }]
+});
+</script>
+</body>
+</html>
