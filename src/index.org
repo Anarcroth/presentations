@@ -1,0 +1,19 @@
+#+REVEAL_ROOT: .
+#+REVEAL_THEME: moon
+#+REVEAL_TRANS: zoom
+#+REVEAL_SPEED: 0.5
+#+REVEAL_HLEVEL: 1
+#+REVEAL_MARGIN: 7
+#+REVEAL_MIN_SCALE: 1
+#+REVEAL_MAX_SCALE: 2
+#+REVEAL_PLUGINS: (classList markdown highlight zoom notes multiplex)
+#+OPTIONS: toc:nil reveal_title_slide:nil reveal_slide_number:c/t num:nil reveal_center
+
+* Presentations
+
+Hello! You've stumbled upon my presentations I've done over the years.
+
+Some are for school work, such as senior thesis's, others are for events.
+
+- [[./inf-sp.html][INF thesis]]
+- [[./cos-sp.html][COS thesis]]

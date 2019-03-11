@@ -27,8 +27,8 @@
 <div class="slides">
 
 <section>
-<section id="slide-org140b4c7">
-<h2 id="org140b4c7">Presentations</h2>
+<section id="slide-org0e95fda">
+<h2 id="org0e95fda">Presentations</h2>
 <p>
 Hello! You've stumbled upon my presentations I've done over the years.
 </p>
@@ -70,7 +70,7 @@ theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 transition: Reveal.getQueryHash().transition || 'zoom', // default/cube/page/concave/zoom/linear/fade/none
 transitionSpeed: '0.5',
 multiplex: {
-    secret: '', // null if client
+    secret: null, // null if client
     id: '', // id, obtained from socket.io server
     url: '' // Location of socket.io server
 },
@@ -84,7 +84,7 @@ dependencies: [
  { src: './plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
  { src: './plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
  { src: '', async: true },
- { src: './plugin/multiplex/master.js', async: true }]
+ { src: './plugin/multiplex/client.js', async: true }]
 });
 </script>
 </body>

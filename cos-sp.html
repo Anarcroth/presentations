@@ -7,18 +7,18 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="file:///home/anarcroth/reveal.js/css/reveal.css"/>
+<link rel="stylesheet" href="./css/reveal.css"/>
 
-<link rel="stylesheet" href="file:///home/anarcroth/reveal.js/css/theme/moon.css" id="theme"/>
+<link rel="stylesheet" href="./css/theme/moon.css" id="theme"/>
 
-<link rel="stylesheet" href="file:///home/anarcroth/reveal.js/lib/css/zenburn.css"/>
+<link rel="stylesheet" href="./lib/css/zenburn.css"/>
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
     if( window.location.search.match( /print-pdf/gi ) ) {
         var link = document.createElement( 'link' );
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'file:///home/anarcroth/reveal.js/css/print/pdf.css';
+        link.href = './css/print/pdf.css';
         document.getElementsByTagName( 'head' )[0].appendChild( link );
     }
 </script>
@@ -30,8 +30,8 @@
 </section>
 
 <section>
-<section id="slide-orgd59dbee">
-<h2 id="orgd59dbee">Analysis of process-scheduling algorithms</h2>
+<section id="slide-orgc1ab45c">
+<h2 id="orgc1ab45c">Analysis of process-scheduling algorithms</h2>
 <p>
 <i>comparison and contrast</i>
 </p>
@@ -46,8 +46,8 @@ The purpose of this project is to analyze and compare these different algorithms
 </section>
 </section>
 <section>
-<section id="slide-org9e30df1">
-<h2 id="org9e30df1">Specification and Analysis</h2>
+<section id="slide-org1232b67">
+<h2 id="org1232b67">Specification and Analysis</h2>
 <p>
 I've set out a few goals with this
 </p>
@@ -57,8 +57,8 @@ I want this project to be:
 </p>
 
 </section>
-<section id="slide-org9766218">
-<h3 id="org9766218">From a functional standpoint</h3>
+<section id="slide-orgfeb070a">
+<h3 id="orgfeb070a">From a functional standpoint</h3>
 <ul>
 <li class="fragment roll-in">Simple interface</li>
 <li class="fragment roll-in">Be responsive to all inputs</li>
@@ -69,8 +69,8 @@ I want this project to be:
 </ul>
 
 </section>
-<section id="slide-org5278368">
-<h3 id="org5278368">And speaking non-functionally</h3>
+<section id="slide-orgc3cbbb3">
+<h3 id="orgc3cbbb3">And speaking non-functionally</h3>
 <ul>
 <li class="fragment roll-in">Fast and light</li>
 <li class="fragment roll-in">Must have high code quality</li>
@@ -81,8 +81,8 @@ I want this project to be:
 </section>
 </section>
 <section>
-<section id="slide-org1d29870">
-<h2 id="org1d29870">Architecture of Software</h2>
+<section id="slide-org5742b30">
+<h2 id="org5742b30">Architecture of Software</h2>
 <p>
 <b>Procedural system</b>
 </p>
@@ -90,8 +90,8 @@ I want this project to be:
 </section>
 </section>
 <section>
-<section id="slide-orgd470c20">
-<h2 id="orgd470c20">Implementation and Technologies</h2>
+<section id="slide-org10a58c5">
+<h2 id="org10a58c5">Implementation and Technologies</h2>
 </section>
 <section >
 
@@ -115,8 +115,8 @@ I want this project to be:
 </section>
 </section>
 <section>
-<section id="slide-orgc0b3714">
-<h2 id="orgc0b3714">Done until now</h2>
+<section id="slide-org43079da">
+<h2 id="org43079da">Done until now</h2>
 <ul>
 <li class="fragment roll-in">FCFS</li>
 <li class="fragment roll-in">SJF</li>
@@ -125,8 +125,8 @@ I want this project to be:
 </ul>
 
 </section>
-<section id="slide-org6f160e0">
-<h3 id="org6f160e0">Some demo code</h3>
+<section id="slide-orge85d1f7">
+<h3 id="orge85d1f7">Some demo code</h3>
 <div class="org-src-container">
 
 <pre><code class="cpp" >void scheduler::fcfs()
@@ -149,8 +149,8 @@ I want this project to be:
 </section>
 </section>
 <section>
-<section id="slide-org27f037d">
-<h2 id="org27f037d">What is to be done</h2>
+<section id="slide-orgefcae23">
+<h2 id="orgefcae23">What is to be done</h2>
 <ul>
 <li class="fragment roll-in">CFS (linux scheduler)</li>
 <li class="fragment roll-in">Multilevel Queue</li>
@@ -161,8 +161,8 @@ I want this project to be:
 </section>
 </div>
 </div>
-<script src="file:///home/anarcroth/reveal.js/lib/js/head.min.js"></script>
-<script src="file:///home/anarcroth/reveal.js/js/reveal.js"></script>
+<script src="./lib/js/head.min.js"></script>
+<script src="./js/reveal.js"></script>
 
 <script>
 // Full list of configuration options available here:
@@ -192,14 +192,14 @@ multiplex: {
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
- { src: 'file:///home/anarcroth/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
- { src: 'file:///home/anarcroth/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
- { src: 'file:///home/anarcroth/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
- { src: 'file:///home/anarcroth/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
- { src: 'file:///home/anarcroth/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
- { src: 'file:///home/anarcroth/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+ { src: './plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
  { src: '', async: true },
- { src: 'file:///home/anarcroth/reveal.js/plugin/multiplex/master.js', async: true }]
+ { src: './plugin/multiplex/master.js', async: true }]
 });
 </script>
 </body>
