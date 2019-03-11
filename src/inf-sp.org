@@ -1,3 +1,4 @@
+#+REVEAL_ROOT: .
 #+REVEAL_THEME: moon
 #+REVEAL_TRANS: zoom
 #+REVEAL_SPEED: 0.5
@@ -10,83 +11,365 @@
 #+Author: Martin Nestorov
 #+OPTIONS: toc:nil reveal_slide_number:c/t num:nil reveal_center
 
-* What is an Interactive CV?
-
-#+BEGIN_NOTES
-Hello! I am Martin Nestorov, currently doing an INF Senior Project, called Interactive CV. This is a Web Application, which emulates an old-styled terminal, that allows for the user to input/upload his/her data and to show off what they have done - effectively making it a CV. The motivation for doing a CV like this is, because on one hand I have never been satisfied with how CV are made, and I want to handle my data the way I want to. I want people to have fun and play around with what I have made, instead of just looking at a piece of paper and evaluating me in 5 min. The other reasoning is that I am very interested in File Systems and emulators, so naturally this is a great project for me to create a virtual file system that builds a console emulator in the browser. It's a good academic exercise.
-#+END_NOTES
-
-* Requirements
-
-- Functional
-- Non-Functional
-
-** Functional
+* About me!
 
 #+ATTR_REVEAL: :frag (roll-in)
-- Heavy data load handle
-- Gather resources from the internet
-- Manage files
-- Printable
-- Easily distributes user data
+- I like Linux
+- Interested in Low-level System
+- Fancies terminals
+- Needs a website and a good CV
+- Can program
 
-** Non-Functional
+* Interactive CV
 
-#+ATTR_REVEAL: :frag (roll-in)
-- Lightweight
-- Scalable
-- Easily distributes whole application
-- Easy to start
-- Easy to setup
+A web application, showing a terminal emulator, sitting on top of a virtual file system, with an *"old-fashioned"-themed* console.
 
-* Technologies used
+Perfect for CV-oriented content!
+
+#+REVEAL: split
 
 #+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
-[[../pics/techused.png]]
+[[./pics/vt100.jpg]]
 
+* Specification and Analysis
 
-#+BEGIN_NOTES
-For this project I decided to go with something I don't have that much experience in. Although I know the just of JS, it's gonna be a learning experience to create all of these low level technologies in such a high level language, running in the browser.
+I've set out a few goals with this
 
-In addition to vanilla JS, I am also using NodeJS plus Express JS to jump start my server. I am also using Morgan JS for logging.
-#+END_NOTES
+I want this project to be:
 
-* Architecture used
+** From a functional standpoint
 
-Highly modulated => One framework that you can plug in small modules.
+#+ATTR_REVEAL: :frag (roll-in)
+- Simple and readable interface
+- Be responsive to all inputs
+- Hold data in files
+- Be robust!
 
-#+BEGIN_NOTES
-I would say that my architecture follows a very modulated pattern. I don't need an MVC. It's closer to having a layer structure, where I have one framework, the VFS, that allows for many small and different functionalities can be plugged in.
-#+END_NOTES
+** And speaking non-functionally
 
-* So far what's been done
+#+ATTR_REVEAL: :frag (roll-in)
+- Lightning fast!
+- Must have high code quality
+- Smart and non-intrusive UI
 
-- project['file-system'] = "done";
-- project['basic front-end'] = "done";
-- project['terminal commands'] = "done";
-- project['web crawler'] = "in-progress";
-- project['cookies'] = "in-progress";
+** Use cases
 
-#+BEGIN_NOTES
-Currently, the project supports a working virtual file system, that connects to the front-end, parses, and execute different UNIX commands. In addition to this, I am working on two things, having cookies and a web crawler. The cookies allow for viewers to create files on a foreign VFS, and the web crawler gathers data if the user has citations and displays statistics about that.
-#+END_NOTES
+#+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
+[[./pics/usercase.jpg]]
 
-* What's left to do
+** Data pipeline
 
-*TODO*
+#+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
+[[./pics/pipeline.jpg]]
 
-- Setup wizard
-- Installer
-- Printable CV
-- More File types support
+* Architecture of Software
 
-#+BEGIN_NOTES
-Apart from the things that are in current progress, there is always something to be added and appended to the project. Such things include an installer, to make using the app easy, a setup wizard, a print functionality to output most important data, more file types support.
-#+END_NOTES
+We can view the app in different ways!
+
+*As an MVC app*
+
+or
+
+*As a modular system*
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
+[[./pics/MVC.jpg]]
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
+[[./pics/core.jpg]]
+
+* The M-Tree!
+
+The core of the framework revolves around the VFS
+
+wrapped up->(~VFS = B+ Tree + Doubly Linked List~)
+
+** Comparison between M-Tree and B+ Tree
+
+B+ Tree:
+1. Has constraints.
+2. Is self balancing.
+3. Does traversal from root.
+4. Leaf nodes hold numerical data
+
+M-Tree:
+1. Has no constrains.
+2. Does not balance.
+3. Has lateral and horizontal movement.
+4. Leaf nodes hold iNodes (files).
+
+#+REVEAL: split
+
+This is the general form
+
+#+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
+[[./pics/mtree.jpg]]
+
+* Algorithms
+
+#+ATTR_REVEAL: :frag (roll-in)
+- Tree traversal
+- Relative path resolution
+- Directory and file mappings
+- Individual commands and argument handling
+- Remote access
+
+** Tree traversal
+
+#+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
+[[./pics/mtree-close.jpg]]
+
+** Relative path resolution
+
+We have 8 cases to handle
+
+#+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
+[[./pics/side-step.jpg]]
+
+#+REVEAL: split
+
+#+BEGIN_SRC bash
+# if
+ls
+
+awards
+education
+experience
+
+# then
+cd ./awards/../awards/.././education
+#+END_SRC
+
+** Directory and file mappings
+
+#+BEGIN_SRC bash
+# we have this
+/education /experience /experience/projects /experience/skills /awards
+# mapped to this
+/education/edu.txt /experience/projects/my_projects.txt
+/experience/skills/soft_skills.txt /experience/skills/hard_skills.txt
+/experience/skills/languages/langs.txt
+#+END_SRC
+
+** Individual commands and argument handling
+
+Many, many commands
+
+- ls
+- cd
+- rm
+- touch
+- cat
+- pwd
+- mkdir
+- rmdir
+- echo
+- and more!
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
+[[./pics/file-creation.jpg]]
+
+** Remote access
+
+#+ATTR_HTML: :width 57% :height 57% :style border:0px solid black;
+[[./pics/deployment.jpg]]
+
+*** Security features
+
+Since all of the data is text based and parsed only on a command based system
+there is no worry that someone might execute malicious scripts on the host!
+
+No forkbomb!
+
+No malware!
+
+No ~rm -rf /~
+
+* Implementation
+
+Everything developed with *Emacs + xterm + Arch Linux* with:
+
+#+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
+[[./pics/techused.png]]
+
+** Some demo code
+
+#+BEGIN_SRC javascript
+const express = require('express');
+
+const port = 3000;
+
+let app = express();
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, '.')));
+app.use(express.static(path.join(__dirname, 'html')));
+app.use(express.static(path.join(__dirname, 'css')));
+app.use(express.static(path.join(__dirname, 'src')));
+#+END_SRC
+
+#+REVEAL: split
+
+I had a lot of problems with references!!
+
+#+BEGIN_SRC javascript
+user.prototype.getDirs = function() {
+    return JSON.parse(JSON.stringify(this.dirs));
+};
+#+END_SRC
+
+#+REVEAL: split
+
+*M-Tree navigation*
+
+#+BEGIN_SRC javascript
+mTree.prototype.moveTo = function(dir) {
+    let workingDir = dir.shift();
+    if (dir.length === 0) {
+        let nextSubtree = this.subtrees.find(s => s.name === workingDir);
+        if (!nextSubtree) {
+            throw Error('directory doesn\'t exist.');
+        }
+        return nextSubtree;
+    } else {
+        let nextSubtree = this.subtrees.find(s => s.name === workingDir);
+        return nextSubtree.moveTo(dir);
+    }
+};
+#+END_SRC
+
+#+REVEAL: split
+
+*M-Tree directory creation*
+
+#+BEGIN_SRC javascript
+mTree.prototype.addSubtree = function(dir, parent) {
+    let workingDir = dir.shift();
+    if (this.subtrees.find(s => s.name === workingDir)) {
+        if (dir.length === 0) {
+            throw Error('File exists');
+        } else {
+            let nextSubtree = this.subtrees.find(x => x.name === workingDir);
+            nextSubtree.addSubtree(dir, nextSubtree);
+        }
+    } else {
+        this.subtrees.push(new mTree(workingDir));
+        let nextSubtree = this.subtrees.find(x => x.name === workingDir);
+        nextSubtree.parenttree = parent;
+        nextSubtree.fullpath = nextSubtree.getFullPath(nextSubtree);
+        if (dir.length > 0) {
+            nextSubtree.addSubtree(dir, nextSubtree);
+        }
+    }
+};
+#+END_SRC
+
+#+REVEAL: split
+
+*Path resolution*
+
+#+BEGIN_SRC javascript
+for (let i = 0; i < d.length; i++) {
+    if (d[i] === '.') {
+        // do nothing
+    } else if (d[i] === '..') {
+        if (wdStree.parenttree.name === 'root' || wdStree.name === 'root') {
+            wd = ['/'];
+            wdStree = jvfs.getWdSubtree(wd);
+        } else {
+            wd = wdStree.parentree.fullpath.slice();
+            wdStree = jvfs.getWdSubtree(wd);
+        }
+    } else {
+        if (wdStree.subtrees.find(s => s.name === d[i])) {
+            wd = wdStree.fullpath.concat(d[i]);
+        } else {
+            wd.push(d[i]);
+        }
+#+END_SRC
+
+* Testing
+
+I was my own QA Engineer!
+
+Tested each command combination on both a real terminal and compared with the applications terminal.
+
+#+REVEAL: split
+
+*Some stress testing as well*
+
+#+BEGIN_SRC javascript
+// [TEST]
+// Create 10 000 files
+this.create10000();
+
+// [TEST Implementation]
+jayVFS.prototype.create10000 = function() {
+    for (let i = 0; i < 10000; i++) {
+        this.createFile(['awards', 'file' + i]);
+    }
+};
+#+END_SRC
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/100000.jpg]]
+
+#+REVEAL: split
+
+#+BEGIN_SRC javascript
+// [TEST]
+this.create1mil();
+
+// [TEST Implementation]
+jayVFS.prototype.create1mil = function() {
+    // Read complete documentation
+    let lines = fs.readFileSync('./README.md', 'utf8', function(){});
+
+    // Create 1000 directories
+    for (let j = 0; j < 10000; j++) {
+
+        this.mtree.addSubtree(['dir' + j], this.mtree);
+
+        // Create in each directory 1000 files
+        // all filed with the whole documentation
+        // of this project
+        for (let i = 0; i < 10000; i++) {
+            let f = this.createFile(['awards', 'file' + i]);
+            f.append(lines);
+        }
+    }
+};
+#+END_SRC
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 50% :height 50% :style border:0px solid black;
+[[./pics/wrong.png]]
+
+* Results and Conclusion
+
+I think it was a success!
+
+#+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
+[[./pics/rms1.jpg]]
 
 * References
 
+- [[http://teaching.idallen.com/cst8207/12f/][GNU/Linux Operating Systems I]]
 - [[https://en.wikipedia.org/wiki/Btrfs][BTRFS]]
+- [[https://en.wikipedia.org/wiki/ZFS][ZFS]]
 - [[http://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf][File System Implementation]]
 - [[http://ext2.sourceforge.net/2005-ols/paper-html/node3.html][Directory indexing]]
 - [[http://www.science.unitn.it/~fiorella/guidelinux/tlk/node94.html][The UNIX File System]]
+
+* Q&A
+
+* DEMO

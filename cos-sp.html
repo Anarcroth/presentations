@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>COS Senior Project</title>
+<meta name="author" content="(Martin Nestorov)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///home/anarcroth/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="file:///home/anarcroth/reveal.js/css/theme/moon.css" id="theme"/>
+
+<link rel="stylesheet" href="file:///home/anarcroth/reveal.js/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'file:///home/anarcroth/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">COS Senior Project</h1><h2 class="author">Martin Nestorov</h2>
+</section>
+
+<section>
+<section id="slide-orgd59dbee">
+<h2 id="orgd59dbee">Analysis of process-scheduling algorithms</h2>
+<p>
+<i>comparison and contrast</i>
+</p>
+
+</section>
+<section >
+
+<p>
+The purpose of this project is to analyze and compare these different algorithms, to show their strengths and weaknesses.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org9e30df1">
+<h2 id="org9e30df1">Specification and Analysis</h2>
+<p>
+I've set out a few goals with this
+</p>
+
+<p>
+I want this project to be:
+</p>
+
+</section>
+<section id="slide-org9766218">
+<h3 id="org9766218">From a functional standpoint</h3>
+<ul>
+<li class="fragment roll-in">Simple interface</li>
+<li class="fragment roll-in">Be responsive to all inputs</li>
+<li class="fragment roll-in">Have at least 4 algorithms implemented</li>
+<li class="fragment roll-in">Graphs for each algorithm performance</li>
+<li class="fragment roll-in">Be robust!</li>
+
+</ul>
+
+</section>
+<section id="slide-org5278368">
+<h3 id="org5278368">And speaking non-functionally</h3>
+<ul>
+<li class="fragment roll-in">Fast and light</li>
+<li class="fragment roll-in">Must have high code quality</li>
+<li class="fragment roll-in">Be easy to build and port</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org1d29870">
+<h2 id="org1d29870">Architecture of Software</h2>
+<p>
+<b>Procedural system</b>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd470c20">
+<h2 id="orgd470c20">Implementation and Technologies</h2>
+</section>
+<section >
+
+
+<div class="figure">
+<p><img src="./pics/cpp.png" alt="cpp.png" width="30%" height="30%" style="border:0px solid black;" />
+</p>
+</div>
+
+<ul>
+<li></li>
+
+</ul>
+
+
+<div class="figure">
+<p><img src="./pics/term.png" alt="term.png" width="50%" height="50%" style="border:0px solid black;" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc0b3714">
+<h2 id="orgc0b3714">Done until now</h2>
+<ul>
+<li class="fragment roll-in">FCFS</li>
+<li class="fragment roll-in">SJF</li>
+<li class="fragment roll-in">RR</li>
+
+</ul>
+
+</section>
+<section id="slide-org6f160e0">
+<h3 id="org6f160e0">Some demo code</h3>
+<div class="org-src-container">
+
+<pre><code class="cpp" >void scheduler::fcfs()
+{
+    average_wait_time = 0;
+    pool::eval_prcs_prty();
+    auto pit = pool::ready_queue.begin();
+    while (pit != pool::ready_queue.end())
+    {
+	exec(pit, pit-&gt;get_ttl());
+
+	dispatcher::context_switch(pit, pit-&gt;get_ttl());
+
+	PSAscreen::get().draw_process_exec(average_wait_time, *pit, pool::done_queue);
+    }
+}
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org27f037d">
+<h2 id="org27f037d">What is to be done</h2>
+<ul>
+<li class="fragment roll-in">CFS (linux scheduler)</li>
+<li class="fragment roll-in">Multilevel Queue</li>
+<li class="fragment roll-in">Priority inversion</li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="file:///home/anarcroth/reveal.js/lib/js/head.min.js"></script>
+<script src="file:///home/anarcroth/reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c/t',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+margin: 7.00,
+minScale: 1.00,
+maxScale: 2.00,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'zoom', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: '0.5',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'file:///home/anarcroth/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'file:///home/anarcroth/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///home/anarcroth/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///home/anarcroth/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+ { src: 'file:///home/anarcroth/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'file:///home/anarcroth/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: '', async: true },
+ { src: 'file:///home/anarcroth/reveal.js/plugin/multiplex/master.js', async: true }]
+});
+</script>
+</body>
+</html>

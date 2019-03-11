@@ -1,0 +1,91 @@
+#+REVEAL_ROOT: .
+#+REVEAL_THEME: moon
+#+REVEAL_TRANS: zoom
+#+REVEAL_SPEED: 0.5
+#+REVEAL_HLEVEL: 1
+#+REVEAL_MARGIN: 7
+#+REVEAL_MIN_SCALE: 1
+#+REVEAL_MAX_SCALE: 2
+#+REVEAL_PLUGINS: (classList markdown highlight zoom notes multiplex)
+#+Title: COS Senior Project
+#+Author: Martin Nestorov
+#+OPTIONS: toc:nil reveal_slide_number:c/t num:nil reveal_center
+
+* Analysis of process-scheduling algorithms
+
+/comparison and contrast/
+
+#+REVEAL: split
+
+The purpose of this project is to analyze and compare these different algorithms, to show their strengths and weaknesses.
+
+* Specification and Analysis
+
+I've set out a few goals with this
+
+I want this project to be:
+
+** From a functional standpoint
+
+#+ATTR_REVEAL: :frag (roll-in)
+- Simple interface
+- Be responsive to all inputs
+- Have at least 4 algorithms implemented
+- Graphs for each algorithm performance
+- Be robust!
+
+** And speaking non-functionally
+
+#+ATTR_REVEAL: :frag (roll-in)
+- Fast and light
+- Must have high code quality
+- Be easy to build and port
+
+* Architecture of Software
+
+*Procedural system*
+
+* Implementation and Technologies
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 30% :height 30% :style border:0px solid black;
+[[./pics/cpp.png]]
+
++
+
+#+ATTR_HTML: :width 50% :height 50% :style border:0px solid black;
+[[./pics/term.png]]
+
+* Done until now
+
+#+ATTR_REVEAL: :frag (roll-in)
+- FCFS
+- SJF
+- RR
+
+** Some demo code
+
+#+BEGIN_SRC cpp
+void scheduler::fcfs()
+{
+    average_wait_time = 0;
+    pool::eval_prcs_prty();
+    auto pit = pool::ready_queue.begin();
+    while (pit != pool::ready_queue.end())
+    {
+	exec(pit, pit->get_ttl());
+
+	dispatcher::context_switch(pit, pit->get_ttl());
+
+	PSAscreen::get().draw_process_exec(average_wait_time, *pit, pool::done_queue);
+    }
+}
+#+END_SRC
+
+* What is to be done
+
+#+ATTR_REVEAL: :frag (roll-in)
+- CFS (linux scheduler)
+- Multilevel Queue
+- Priority inversion
