@@ -1,0 +1,206 @@
+#+REVEAL_ROOT: .
+#+REVEAL_THEME: moon
+#+REVEAL_TRANS: zoom
+#+REVEAL_SPEED: 0.5
+#+REVEAL_HLEVEL: 1
+#+REVEAL_MARGIN: 7
+#+REVEAL_MIN_SCALE: 1
+#+REVEAL_MAX_SCALE: 2
+#+REVEAL_PLUGINS: (classList markdown highlight zoom notes multiplex)
+#+Title: What is Open Source
+#+OPTIONS: toc:nil reveal_slide_number:c/t num:nil reveal_center
+
+* Free as in /Freedom/
+
+#+BEGIN_NOTES
+Many people, when they hear "Open Source", they think - "Oh, that's just free software", or "That's software that you can see the source code and you can distribute it". Although this is technically correct, to the extend we use it on a day-to-day basis, there is something much deeper behind the idea of *Open Source*. It's not just about being able to see how someone implemented something, or just getting software for free, it's about what that symbolizes, what it means to be free, what it means to have control over what you are doing. It means that you are a part of a moral movement, that tries to make the world better.
+
+The Linux kernel isn't just simply free, it *gives you freedom*. You, the user, have the freedom to choose, what you want, what you can have, what you are agreeing to. There are plenty of things in life that are simply "free of charge", but just a few things give you moral freedom.
+
+Let's take a walk down memory lane (in a time when we weren't born and things were much more UNIX like :P) and see how Open Source began. And, hopefully, by the end, you will see the significance of it!
+#+END_NOTES
+
+* This is me
+
+#+ATTR_HTML: :width 60% :height 60% :style border:0px solid black;
+[[./pics/me.jpg]]
+
+#+REVEAL: split
+
+#+ATTR_REVEAL: :frag (roll-in)
+- *email*: mdn150@aubg.edu
+- *Twitter*: @mnestorov
+- Linux user, git lover, Emacs maniac, typing enthusiast!
+
+#+REVEAL: split
+
+#+ATTR_HTML: :style border:0px solid black;
+[[./pics/kb1.jpg]]
+
+* Once upon a time
+
+There was a great *philosopher* and a great *engineer*.
+
+** The philosopher
+
+#+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
+[[./pics/rms1.jpg]]
+
+
+** The Engineer
+
+#+ATTR_HTML: :width 90% :height 90% :style border:0px solid black;
+[[./pics/lt1.jpg]]
+
+#+BEGIN_NOTES
+Once upon a time, there was darkness... A world filled with Microsoft labels, lawyers, bugs, legal contracts, and dirty money. **DISCLAIMER**: These are all jokes and pokes towards Microsoft, I don't mean this to be a circle-jerk of GNU/Linux people. Then a bearded man came. And much like all great bearded people, he was not found of how the world of software was stated. He was constrained be proprietary software that had bugs and didn't want to have an open community. So he was in front of a moral dilemma - should he use software that didn't cherish the freedom of the user? That's why he made a decision, to create his own operating system, which he would distribute openly, invite other people to use it, this solving the dilemma of having to choose between closed, "malicious" software. And thus, the GNU Operating System was born.
+#+END_NOTES
+
+* The GNU Operating System
+
+#+BEGIN_SRC C +n 0
+day[0]->add_compiler();
+day[1]->create_debugger();
+day[2]->make_best_editor_ever();
+#+END_SRC
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 18% :height 18% :style border:0px solid black;
+[[./pics/vim.png]]
+
+#+ATTR_REVEAL: :frag (shrink)
+#+ATTR_HTML: :width 20% :height 20% :style border:0px solid black;
+[[./pics/wrong.png]]
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 50% :height 50% :style border:0px solid black;
+[[./pics/emacs.png]]
+
+#+BEGIN_NOTES
+On the zeroth day God created a compiler, something that would transform human readable code into something that the machine would understand. On day one, he created a debugger, a tool which helped the programmer to find bugs, and see in what state is the program in any given time. On day two, he created the best text editor in the world. Then for the rest of the days, one by one, each program that was needed to be written, in order for an Operating System to exit, was created. In the end only one thing was missing - a kernel, the thing that allocates resources and reads from the disk, in order for other programs to work properly.
+#+END_NOTES
+
+* The Linux kernel
+
+#+BEGIN_SRC C +n 0
+if (kernel.c_str() == "linux")
+{
+    kernel->be_awesome();
+}
+else
+{
+    printf("%s \n", "Oh no, you're doing it wrong :(");
+}
+#+END_SRC
+
+** You know, just simple stuff
+
+#+ATTR_HTML: :width 80% :height 80% :style border:0px solid black;
+[[./pics/kernel.jpg]]
+
+#+BEGIN_NOTES
+The Linux kernel was just a good operating system. It did what it needed to do, through the tried and true method, of being a monolith that provided an area where all the other programs can collaborate and work together. In the beginning, maybe, the most important thing was having a C-compiler, which allowed for more work to be done.
+#+END_NOTES
+
+* What about the market?
+
+| Year | Version | Lines of Code |  Users |
+| 1991 |    0.01 | 10,000        |      1 |
+| 1992 |    0.96 | 40,000        |   1000 |
+| 1993 |    0.99 | 100,000       |  20000 |
+| 1995 |     1.2 | 250,000       | 500000 |
+| 1997 |     2.1 | 800,000       | 3.5mil |
+| 1998 |    2.11 | 1.5mil        | 7.5mil |
+| 1999 |     2.2 | 2.2mil        |  12mil |
+
+#+BEGIN_NOTES
+Because all of these things were actually given out for free, as in, no money, this was something completely different for the time. Well, not exactly. Before Microsoft came and predominated the world with the idea about proprietary software, people just shared code to one another, but after the lawyers flooded the stage, business changed. So how does the idea about open software compares to the needs of the user?
+
+The thing is that, for the needs of the market, people either had the choice to pay a license and get support form a monopoly, i.e. some company that owned the code, or they could invest in some open source project and have many, many people be able to help and improve the product as it develops. Of course, since that was a high risk tactic, not a lot of people were ready to take on it. The first company that really invested into open source was called *CYGNUS*.
+
+But even with the help and funding of CYGNUS, the market was still struggling with these independent hackers. This is where Netscape comes into play. Netscape was the first major company that released it's software out in the open. It became - Open Source.
+
+But an important distinction must be made. Open Source doesn't mean "public domain". The public domain means that anyone can get something, tinker with it, create something that is proprietary and we are at square one. The public domain doesn't maintain the sate of having "freedom". And nothing is more important than being free.
+#+END_NOTES
+
+* The GPL
+
+#+ATTR_REVEAL: :frag (shrink)
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/gpl3.png]]
+
+#+BEGIN_NOTES
+So the way we deal with this is through the most important license that was ever made - The GNU General Public License. This license actually tells you, and if you read it you will see, that you can get a copy, distribute, modify, sell and make a profit, from the hereby presented software, but you cannot hinder any of these capabilities, once you get the software. What this means is that, this license allows you to distribute an open product that allows you to choose what you are getting, allows you to see what you can do with it, no hidden stuff, no shenanigans.
+
+There are thousands of products that are licensed under this, even the Linux kernel is one such example. It may not be the most elegant license, but it sure is important.
+#+END_NOTES
+
+* Redefining Open Source
+
+#+ATTR_REVEAL: :frag (roll-in)
+ * 1. Free Distribution
+ * 2. Source Code Available
+ * 3. Derived Works Permit
+ * 4. Integrity of the Author's Source Code
+ * 5. No Discrimination against people or groups
+ * 6. No Discrimination against fields of endeavor
+ * 7. Distribution of License
+ * 8. The License cannot be specific to a product
+ * 9. The License cannot contaminate other software products
+
+#+BEGIN_NOTES
+Now let's go back and look at the definition we didn't give in the beginning about Open Source. It isn't anymore a simple example of sharing code. Actually, there is the so called *Open Source Definition*, which specifies what Open Source is. And in it, there are 9 rules which we follow.
+
+1. This doesn't mean "free" as in no price, it means liberty! You are free to share this piece of work with anyone who wants it. Price is of no matter here, you can charge for it or give it out for free.
+
+2. It has to come with source code, so that someone can maintain the project and be able to add new features to it, or fix bugs.
+
+3. If someone were to improve your program, they should be able to distribute that result.
+
+4. This means that the author can maintain his honor. And if you change their program you might also have to change the name of the program or mark out the change very clearly, so that the change doesn't reflect the original author.
+
+6. This means that the software must be usable in a business as well as in a school.
+
+7. Whoever gets the product also gets the same license that gives the same rights to the user. And if that license is passed to a third person, then he can also use it without a problem under the same conditions.
+
+9. If you distribute a product, let's say on a CD, together with another program, your software cannot say that "the other program must also be free, otherwise you cannot distribute my software".
+#+END_NOTES
+
+* The amazing world of Open Source
+
+[[./pics/opensource.jpg]]
+
+#+BEGIN_NOTES
+Throughout the years, Open Source has managed to create an amazing community, filled with hackers who want to be part of a moral movement and make something useful. We want to help and get out brilliant idea out there so it can do something. We want to fix things.
+
+There are so many things that are open source, that we use today, that we are not aware of. The whole software world works because of open software. We cannot live without it. And we know that's the case because we cannot see it. It's not obvious because it's doing its job so well, that we don't need to notice it.
+
+Here are some examples - Mozilla Firefox is Open Source, so is the Linux Kernel, together with the thousand distributions it comes with, VIM, Emacs, and Git are also Open Source... So are all of the libraries that come from the Apache foundation, OpenSSL, cryptographic libraries, with which we make sure that our connections (through which we make business), libraries with which we analyze data, gather data, create medical software that cures people, software that connects people together, software that allows for planes to fly, ships to ship, and cars to car (Tesla are releasing their kernel as well!). Our phones use open source, our PCs, MACs, vending machines... Yes they are not all 100% open and free, but they do rely on this community. We are this community, we are the hackers that make the world work.
+#+END_NOTES
+
+* Final Words
+
+*"If you are not fixing a problem, then why are you building software?"*
+
+/- Rich Hickey/
+
+#+REVEAL: split
+
+[[./pics/rms_final_words1.webm]]
+
+#+BEGIN_NOTES
+I want us to go back and hear what RMS has to say about the movement he has created.
+
+I want us to be hackers, smart, playful, building something useful. In the words of the great Rich Hickey - "If you are not fixing a problem, then why are you building software?"
+#+END_NOTES
+
+* References
+
+- [[https://www.youtube.com/watch?v=jw8K460vx1c][Revolution OS]]
+- [[http://www.unterstein.net/su/docs/CathBaz.pdf][The Cathedral and the Bazaar]]
+- [[https://opensource.org/osd][The Open Source Definition]]
+- [[https://www.gnu.org/][GNU]]
+- [[https://www.gnu.org/philosophy/free-software-intro.en.html][Free Software Movement]]
+- [[https://www.gnu.org/licenses/gpl-3.0.en.html][GPL 3]]
