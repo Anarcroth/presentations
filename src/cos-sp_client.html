@@ -26,12 +26,12 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">COS Senior Project</h1><h2 class="author">Martin Nestorov</h2><p class="date">Created: 2019-03-11 Mon 15:01</p>
+<section id="sec-title-slide"><h1 class="title">COS Senior Project</h1><h2 class="author">Martin Nestorov</h2><p class="date">Created: 2019-03-12 Tue 15:43</p>
 </section>
 
 <section>
-<section id="slide-orgdc8d645">
-<h2 id="orgdc8d645">Analysis of process-scheduling algorithms</h2>
+<section id="slide-org8efd236">
+<h2 id="org8efd236">Analysis of process-scheduling algorithms</h2>
 <p>
 <i>comparison and contrast</i>
 </p>
@@ -46,8 +46,8 @@ The purpose of this project is to analyze and compare these different algorithms
 </section>
 </section>
 <section>
-<section id="slide-org2de8841">
-<h2 id="org2de8841">Specification and Analysis</h2>
+<section id="slide-org85fead9">
+<h2 id="org85fead9">Specification and Analysis</h2>
 <p>
 I've set out a few goals with this
 </p>
@@ -57,8 +57,8 @@ I want this project to be:
 </p>
 
 </section>
-<section id="slide-org72ef029">
-<h3 id="org72ef029">From a functional standpoint</h3>
+<section id="slide-org3892bae">
+<h3 id="org3892bae">From a functional standpoint</h3>
 <ul>
 <li class="fragment roll-in">Simple interface</li>
 <li class="fragment roll-in">Be responsive to all inputs</li>
@@ -69,8 +69,8 @@ I want this project to be:
 </ul>
 
 </section>
-<section id="slide-orgaf711d7">
-<h3 id="orgaf711d7">And speaking non-functionally</h3>
+<section id="slide-orgb8c24b3">
+<h3 id="orgb8c24b3">And speaking non-functionally</h3>
 <ul>
 <li class="fragment roll-in">Fast and light</li>
 <li class="fragment roll-in">Must have high code quality</li>
@@ -81,8 +81,8 @@ I want this project to be:
 </section>
 </section>
 <section>
-<section id="slide-org7a7747b">
-<h2 id="org7a7747b">Architecture of Software</h2>
+<section id="slide-org9fca4f8">
+<h2 id="org9fca4f8">Architecture of Software</h2>
 <p>
 <b>Procedural system</b>
 </p>
@@ -90,8 +90,8 @@ I want this project to be:
 </section>
 </section>
 <section>
-<section id="slide-org4b68aaa">
-<h2 id="org4b68aaa">Implementation and Technologies</h2>
+<section id="slide-org160e078">
+<h2 id="org160e078">Implementation and Technologies</h2>
 </section>
 <section >
 
@@ -115,8 +115,8 @@ I want this project to be:
 </section>
 </section>
 <section>
-<section id="slide-orgd335806">
-<h2 id="orgd335806">Done until now</h2>
+<section id="slide-orgef49f70">
+<h2 id="orgef49f70">Done until now</h2>
 <ul>
 <li class="fragment roll-in">FCFS</li>
 <li class="fragment roll-in">SJF</li>
@@ -125,20 +125,20 @@ I want this project to be:
 </ul>
 
 </section>
-<section id="slide-orgf3ebe44">
-<h3 id="orgf3ebe44">Some demo code</h3>
+<section id="slide-org375bf0d">
+<h3 id="org375bf0d">Some demo code</h3>
 <div class="org-src-container">
 
-<pre><code class="cpp" >void scheduler::fcfs()
+<pre><code class="c++" >void scheduler::fcfs()
 {
     average_wait_time = 0;
     pool::eval_prcs_prty();
     auto pit = pool::ready_queue.begin();
     while (pit != pool::ready_queue.end())
     {
-	exec(pit, pit-&gt;get_ttl());
+	exec(pit, pit->get_ttl());
 
-	dispatcher::context_switch(pit, pit-&gt;get_ttl());
+	dispatcher::context_switch(pit, pit->get_ttl());
 
 	PSAscreen::get().draw_process_exec(average_wait_time, *pit, pool::done_queue);
     }
@@ -149,8 +149,8 @@ I want this project to be:
 </section>
 </section>
 <section>
-<section id="slide-org57bcd92">
-<h2 id="org57bcd92">What is to be done</h2>
+<section id="slide-orge967f1d">
+<h2 id="orge967f1d">What is to be done</h2>
 <ul>
 <li class="fragment roll-in">CFS (linux scheduler)</li>
 <li class="fragment roll-in">Multilevel Queue</li>

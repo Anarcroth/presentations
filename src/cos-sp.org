@@ -78,7 +78,8 @@ void scheduler::fcfs()
 
 	dispatcher::context_switch(pit, pit->get_ttl());
 
-	PSAscreen::get().draw_process_exec(average_wait_time, *pit, pool::done_queue);
+	PSAscreen::get().draw_process_exec(average_wait_time,
+	                                   *pit, pool::done_queue);
     }
 }
 #+END_SRC

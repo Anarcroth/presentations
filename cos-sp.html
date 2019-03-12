@@ -11,7 +11,6 @@
 
 <link rel="stylesheet" href="./css/theme/moon.css" id="theme"/>
 
-<link rel="stylesheet" href="./lib/css/zenburn.css"/>
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
     if( window.location.search.match( /print-pdf/gi ) ) {
@@ -128,22 +127,23 @@ I want this project to be:
 <section id="slide-orge85d1f7">
 <h3 id="orge85d1f7">Some demo code</h3>
 <div class="org-src-container">
+    <pre>
+<span style="color: #5C6370; background-color: #2C323C;">
+</span><span style="color: #E5C07B;"> void</span><span style="color: #b3b3b3;"> </span><span style="color: #56B6C2;">scheduler</span><span style="color: #b3b3b3;">::</span><span style="color: #61AFEF;">fcfs</span><span style="color: #61AFEF;">()</span><span style="color: #b3b3b3;">
+</span><span style="color: #61AFEF;"> {</span><span style="color: #b3b3b3;">
+     average_wait_time = 0;
+     </span><span style="color: #56B6C2;">pool</span><span style="color: #b3b3b3;">::eval_prcs_prty</span><span style="color: #98C379;">()</span><span style="color: #b3b3b3;">;
+     </span><span style="color: #C678DD;">auto</span><span style="color: #b3b3b3;"> </span><span style="color: #E06C75;">pit</span><span style="color: #b3b3b3;"> = </span><span style="color: #56B6C2;">pool</span><span style="color: #b3b3b3;">::ready_queue.begin</span><span style="color: #98C379;">()</span><span style="color: #b3b3b3;">;
+     </span><span style="color: #C678DD;">while</span><span style="color: #b3b3b3;"> </span><span style="color: #98C379;">(</span><span style="color: #b3b3b3;">pit != </span><span style="color: #56B6C2;">pool</span><span style="color: #b3b3b3;">::ready_queue.end</span><span style="color: #D19A66;">()</span><span style="color: #98C379;">)</span><span style="color: #b3b3b3;">
+     </span><span style="color: #98C379;">{</span><span style="color: #b3b3b3;">
+        exec</span><span style="color: #D19A66;">(</span><span style="color: #b3b3b3;">pit, pit-&gt;get_ttl</span><span style="color: #56B6C2;">()</span><span style="color: #D19A66;">)</span><span style="color: #b3b3b3;">;
 
-<pre><code class="cpp" >void scheduler::fcfs()
-{
-    average_wait_time = 0;
-    pool::eval_prcs_prty();
-    auto pit = pool::ready_queue.begin();
-    while (pit != pool::ready_queue.end())
-    {
-	exec(pit, pit-&gt;get_ttl());
+        </span><span style="color: #56B6C2;">dispatcher</span><span style="color: #b3b3b3;">::context_switch</span><span style="color: #D19A66;">(</span><span style="color: #b3b3b3;">pit, pit-&gt;get_ttl</span><span style="color: #56B6C2;">()</span><span style="color: #D19A66;">)</span><span style="color: #b3b3b3;">;
 
-	dispatcher::context_switch(pit, pit-&gt;get_ttl());
-
-	PSAscreen::get().draw_process_exec(average_wait_time, *pit, pool::done_queue);
-    }
-}
-</code></pre>
+        </span><span style="color: #56B6C2;">PSAscreen</span><span style="color: #b3b3b3;">::get</span><span style="color: #D19A66;">()</span><span style="color: #b3b3b3;">.draw_process_exec</span><span style="color: #D19A66;">(</span><span style="color: #b3b3b3;">average_wait_time,
+                                           *pit, </span><span style="color: #56B6C2;">pool</span><span style="color: #b3b3b3;">::done_queue</span><span style="color: #D19A66;">)</span><span style="color: #b3b3b3;">;
+     </span><span style="color: #98C379;">}</span><span style="color: #b3b3b3;">
+</span><span style="color: #61AFEF;"> }</span></pre>
 </div>
 
 </section>

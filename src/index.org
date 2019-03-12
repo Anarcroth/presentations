@@ -17,3 +17,4 @@ Some are for school work, such as senior thesis's, others are for events.
 
 - [[./inf-sp.html][INF thesis]]
 - [[./cos-sp.html][COS thesis]]
+- [[./opensource.html][What is Opensource]]
