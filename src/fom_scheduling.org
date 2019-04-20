@@ -1,0 +1,186 @@
+#+REVEAL_ROOT: .
+#+REVEAL_THEME: moon
+#+REVEAL_TRANS: zoom
+#+REVEAL_SPEED: 0.5
+#+REVEAL_HLEVEL: 1
+#+REVEAL_MARGIN: 7
+#+REVEAL_MIN_SCALE: 1
+#+REVEAL_MAX_SCALE: 2
+#+REVEAL_PLUGINS: (classList markdown highlight zoom notes multiplex)
+#+Title: Scheduling Algorithms - contrast and comparison
+#+OPTIONS: toc:nil reveal_slide_number:c/t num:nil reveal_center
+
+* Motivation
+
+The purpose of this project is to analyze and compare these different algorithms, to show their strengths and weaknesses.
+
+* Types of Scheduling Algorithms
+
+#+ATTR_REVEAL: :frag (roll-in)
+- First Come First Serve
+- Shortest Job First V1
+- Shortest Job First V2
+- Round Robbin
+- Completely Fair Scheduler
+
+#+REVEAL: split
+
+*System Types* can be either /Interactive/, /Real-Time/, and /Batch/, with sub-types being preemptive or non-preemptive.
+
+* A Word about processes
+
+Processes need to be simulated, thus their work is to /sleep/ and be scheduled. We take it as a given that the processes will be normally distributed over a time range.
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/process.png]]
+
+* FCFS
+
+- non-preemptive
+- used in batch systems
+- easy, but not effective
+
+#+BEGIN_SRC cpp
+void scheduler::fcfs()
+{
+    reset();
+    pool::eval_prcs_prty();
+    auto pit = pool::ready_queue.begin();
+    while (!pool::empty()) {
+	pit->set_tos(total_t);
+	pit->add_wait_t(total_t);
+	exec(pit->get_ttl());
+	dispatcher::context_switch(pit, pit->get_ttl());
+    }
+}
+#+END_SRC
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/fcfs.png]]
+
+* SJF 1/2
+
+- uses predictions to estimate next burst
+- more optimal than SJF
+- easy, but not applicable to real world
+
+#+BEGIN_SRC cpp
+void scheduler::sjf_v1()
+{
+    reset();
+    pool::eval_prcs_prty();
+    std::sort(pool::ready_queue.begin(),
+	      pool::ready_queue.end(),
+	      [] (const process a, const process b) {
+		  return a.get_ttl() < b.get_ttl();
+	      });
+    auto pit = pool::ready_queue.begin();
+    while (pit != pool::ready_queue.end()) {
+	pit->set_tos(total_t);
+	pit->add_wait_t(total_t);
+	exec(pit->get_ttl());
+	dispatcher::context_switch(pit, pit->get_ttl());
+    }
+}
+#+END_SRC
+
+* SJF 1/2
+
+- uses predictions to estimate next burst
+- more optimal than SJF
+- easy, but not applicable to real world
+
+#+BEGIN_SRC cpp
+void scheduler::sjf_v1()
+{
+    reset();
+    pool::eval_prcs_prty();
+    std::sort(pool::ready_queue.begin(),
+	      pool::ready_queue.end(),
+	      [] (const process a, const process b) {
+		  return a.get_ttl() < b.get_ttl();
+	      });
+    auto pit = pool::ready_queue.begin();
+    while (pit != pool::ready_queue.end()) {
+	pit->set_tos(total_t);
+	pit->add_wait_t(total_t);
+	exec(pit->get_ttl());
+	dispatcher::context_switch(pit, pit->get_ttl());
+    }
+}
+#+END_SRC
+
+#+REVEAL: split
+
+#+BEGIN_SRC cpp
+void scheduler::sjf_v2()
+{
+    reset();
+    pool::eval_prcs_prty();
+    int prediction = prev_pr_burst;
+    auto pit = pool::ready_queue.begin();
+    while (pit != pool::ready_queue.end()) {
+	// must be saved before the next process comes
+	int prev_pr_ttl = pit->get_ttl();
+	take(pit, prediction);
+	prediction = exponential_average(prev_pr_ttl);
+    }
+}
+
+int scheduler::exponential_average(int prev_pr_ttl)
+{
+    prev_pr_burst = ALPHA * prev_pr_ttl + (1 - ALPHA) * prev_pr_burst;
+    return prev_pr_burst;
+}
+#+END_SRC
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/sjf.png]]
+
+* Round Robbin
+
+- used on preemptive systems
+- optimal
+- allows for more fair distribution of execution
+- used in modern systems
+
+#+BEGIN_SRC cpp
+void scheduler::round_rob()
+{
+    reset();
+    pool::eval_prcs_prty();
+    auto pit = pool::ready_queue.begin();
+    while (!pool::empty()) {
+        pit->set_tos(total_t);
+        pit->add_wait_t(total_t);
+        if (pit->has_io()) {
+            exec(TIME_QUANTUM / 2);
+	    dispatcher::interrupt(pit, TIME_QUANTUM / 2);
+        } else {
+	    exec(TIME_QUANTUM);
+	    dispatcher::context_switch(pit, TIME_QUANTUM);
+        }
+    }
+}
+#+END_SRC
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/rr.jpg]]
+
+* Conclusion
+
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/nonpre.png]]
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/prem.png]]
