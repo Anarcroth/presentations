@@ -11,6 +11,7 @@
 
 <link rel="stylesheet" href="./css/theme/moon.css" id="theme"/>
 
+<link rel="stylesheet" href="./lib/css/zenburn.css"/>
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
     if( window.location.search.match( /print-pdf/gi ) ) {
@@ -25,18 +26,18 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">COS Senior Project</h1><h2 class="author">Martin Nestorov</h2>
+<section id="sec-title-slide"><h1 class="title">COS Senior Project</h1><h2 class="author">Martin Nestorov</h2><p class="date">Created: 2019-04-30 Tue 08:44</p>
 </section>
 
 <section>
-<section id="slide-orgc1ab45c">
-<h2 id="orgc1ab45c">Analysis of process-scheduling algorithms</h2>
+<section id="slide-org2a9e0a3">
+<h2 id="org2a9e0a3">Analysis of process-scheduling algorithms</h2>
+</section>
+<section >
+
 <p>
 <i>comparison and contrast</i>
 </p>
-
-</section>
-<section >
 
 <p>
 The purpose of this project is to analyze and compare these different algorithms, to show their strengths and weaknesses.
@@ -45,8 +46,8 @@ The purpose of this project is to analyze and compare these different algorithms
 </section>
 </section>
 <section>
-<section id="slide-org1232b67">
-<h2 id="org1232b67">Specification and Analysis</h2>
+<section id="slide-org6d49c15">
+<h2 id="org6d49c15">Specification and Analysis</h2>
 <p>
 I've set out a few goals with this
 </p>
@@ -56,20 +57,19 @@ I want this project to be:
 </p>
 
 </section>
-<section id="slide-orgfeb070a">
-<h3 id="orgfeb070a">From a functional standpoint</h3>
+<section id="slide-org55baab1">
+<h3 id="org55baab1">From a functional standpoint</h3>
 <ul>
 <li class="fragment roll-in">Simple interface</li>
 <li class="fragment roll-in">Be responsive to all inputs</li>
-<li class="fragment roll-in">Have at least 4 algorithms implemented</li>
 <li class="fragment roll-in">Graphs for each algorithm performance</li>
 <li class="fragment roll-in">Be robust!</li>
 
 </ul>
 
 </section>
-<section id="slide-orgc3cbbb3">
-<h3 id="orgc3cbbb3">And speaking non-functionally</h3>
+<section id="slide-org6b2b732">
+<h3 id="org6b2b732">And speaking non-functionally</h3>
 <ul>
 <li class="fragment roll-in">Fast and light</li>
 <li class="fragment roll-in">Must have high code quality</li>
@@ -78,19 +78,37 @@ I want this project to be:
 </ul>
 
 </section>
-</section>
-<section>
-<section id="slide-org5742b30">
-<h2 id="org5742b30">Architecture of Software</h2>
-<p>
-<b>Procedural system</b>
+<section id="slide-org59bec4e">
+<h3 id="org59bec4e">Pipeline of Software</h3>
+
+<div class="figure">
+<p><img src="./pics/pipelin.jpg" alt="pipelin.jpg" width="80%" height="80%" style="border:0px solid black;" />
 </p>
+</div>
 
 </section>
 </section>
 <section>
-<section id="slide-org10a58c5">
-<h2 id="org10a58c5">Implementation and Technologies</h2>
+<section id="slide-org54a07ec">
+<h2 id="org54a07ec">Architecture of Software</h2>
+<p>
+<b>MVC</b>
+</p>
+
+</section>
+<section >
+
+
+<div class="figure">
+<p><img src="./pics/component.jpg" alt="component.jpg" width="100%" height="100%" style="border:0px solid black;" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf29df02">
+<h2 id="orgf29df02">Implementation and Technologies</h2>
 </section>
 <section >
 
@@ -114,49 +132,160 @@ I want this project to be:
 </section>
 </section>
 <section>
-<section id="slide-org43079da">
-<h2 id="org43079da">Done until now</h2>
+<section id="slide-orgfd10a74">
+<h2 id="orgfd10a74">Types of Scheduling Algorithms</h2>
 <ul>
-<li class="fragment roll-in">FCFS</li>
-<li class="fragment roll-in">SJF</li>
-<li class="fragment roll-in">RR</li>
+<li class="fragment roll-in">First Come First Serve</li>
+<li class="fragment roll-in">Shortest Job First V1</li>
+<li class="fragment roll-in">Shortest Job First V2</li>
+<li class="fragment roll-in">Round Robbin</li>
+<li class="fragment roll-in">Priority Job First</li>
+<li class="fragment roll-in">Completely Fair Scheduler</li>
 
 </ul>
 
 </section>
-<section id="slide-orge85d1f7">
-<h3 id="orge85d1f7">Some demo code</h3>
-<div class="org-src-container">
-    <pre>
-<span style="color: #5C6370; background-color: #2C323C;">
-</span><span style="color: #E5C07B;"> void</span><span style="color: #b3b3b3;"> </span><span style="color: #56B6C2;">scheduler</span><span style="color: #b3b3b3;">::</span><span style="color: #61AFEF;">fcfs</span><span style="color: #61AFEF;">()</span><span style="color: #b3b3b3;">
-</span><span style="color: #61AFEF;"> {</span><span style="color: #b3b3b3;">
-     average_wait_time = 0;
-     </span><span style="color: #56B6C2;">pool</span><span style="color: #b3b3b3;">::eval_prcs_prty</span><span style="color: #98C379;">()</span><span style="color: #b3b3b3;">;
-     </span><span style="color: #C678DD;">auto</span><span style="color: #b3b3b3;"> </span><span style="color: #E06C75;">pit</span><span style="color: #b3b3b3;"> = </span><span style="color: #56B6C2;">pool</span><span style="color: #b3b3b3;">::ready_queue.begin</span><span style="color: #98C379;">()</span><span style="color: #b3b3b3;">;
-     </span><span style="color: #C678DD;">while</span><span style="color: #b3b3b3;"> </span><span style="color: #98C379;">(</span><span style="color: #b3b3b3;">pit != </span><span style="color: #56B6C2;">pool</span><span style="color: #b3b3b3;">::ready_queue.end</span><span style="color: #D19A66;">()</span><span style="color: #98C379;">)</span><span style="color: #b3b3b3;">
-     </span><span style="color: #98C379;">{</span><span style="color: #b3b3b3;">
-        exec</span><span style="color: #D19A66;">(</span><span style="color: #b3b3b3;">pit, pit-&gt;get_ttl</span><span style="color: #56B6C2;">()</span><span style="color: #D19A66;">)</span><span style="color: #b3b3b3;">;
+<section >
 
-        </span><span style="color: #56B6C2;">dispatcher</span><span style="color: #b3b3b3;">::context_switch</span><span style="color: #D19A66;">(</span><span style="color: #b3b3b3;">pit, pit-&gt;get_ttl</span><span style="color: #56B6C2;">()</span><span style="color: #D19A66;">)</span><span style="color: #b3b3b3;">;
+<p>
+<b>System Types</b> can be either <i>Interactive</i>, <i>Real-Time</i>, and <i>Batch</i>, with sub-types being preemptive or non-preemptive.
+</p>
 
-        </span><span style="color: #56B6C2;">PSAscreen</span><span style="color: #b3b3b3;">::get</span><span style="color: #D19A66;">()</span><span style="color: #b3b3b3;">.draw_process_exec</span><span style="color: #D19A66;">(</span><span style="color: #b3b3b3;">average_wait_time,
-                                           *pit, </span><span style="color: #56B6C2;">pool</span><span style="color: #b3b3b3;">::done_queue</span><span style="color: #D19A66;">)</span><span style="color: #b3b3b3;">;
-     </span><span style="color: #98C379;">}</span><span style="color: #b3b3b3;">
-</span><span style="color: #61AFEF;"> }</span></pre>
+</section>
+</section>
+<section>
+<section id="slide-org22a1170">
+<h2 id="org22a1170">A Word about processes</h2>
+<p>
+Processes need to be simulated, thus their work is to <i>sleep</i> and be scheduled. We take it as a given that the processes will be normally distributed over a time range.
+</p>
+
+</section>
+<section >
+
+
+<div class="figure">
+<p><img src="./pics/process.png" alt="process.png" width="100%" height="100%" style="border:0px solid black;" />
+</p>
 </div>
 
 </section>
 </section>
 <section>
-<section id="slide-orgefcae23">
-<h2 id="orgefcae23">What is to be done</h2>
+<section id="slide-org593deec">
+<h2 id="org593deec">Shortest Job First V2</h2>
 <ul>
-<li class="fragment roll-in">CFS (linux scheduler)</li>
-<li class="fragment roll-in">Multilevel Queue</li>
-<li class="fragment roll-in">Priority inversion</li>
+<li>Uses predictions to estimate next burst</li>
+<li>More optimal than FCFS</li>
+<li>Not applicable to real world</li>
 
 </ul>
+
+</section>
+<section id="slide-orgfdd28b0">
+<h3 id="orgfdd28b0">Exponential Average Calculation</h3>
+
+<div class="figure">
+<p><img src="./pics/expoavg.png" alt="expoavg.png" width="100%" height="100%" style="border:0px solid black;" />
+</p>
+</div>
+
+</section>
+<section >
+
+
+<div class="figure">
+<p><img src="./pics/sjf.png" alt="sjf.png" width="100%" height="100%" style="border:0px solid black;" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org329ab19">
+<h2 id="org329ab19">Round Robin</h2>
+<ul>
+<li>Used on preemptive systems</li>
+<li>Optimal</li>
+<li>Allows for more fair distribution of execution</li>
+<li>Used in modern systems</li>
+
+</ul>
+
+</section>
+<section >
+
+
+<div class="figure">
+<p><img src="./pics/rr.png" alt="rr.png" width="100%" height="100%" style="border:0px solid black;" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd7fbf63">
+<h2 id="orgd7fbf63">Completely Fair Scheduler</h2>
+<ul>
+<li>Used as the Linux Scheduler</li>
+<li>Implemented via Red-Black Tree</li>
+<li>Based on the idea of fair distribution of processes</li>
+<li>Optimal</li>
+
+</ul>
+
+</section>
+<section id="slide-org1b5ca7e">
+<h3 id="org1b5ca7e">Red-Black Tree Structure</h3>
+<p>
+A Red-Black Tree is a kind of self-balancing binary search tree. Each node of the binary tree has an extra bit, often interpreted as the color of the node. These color bits are used to ensure the tree remains approximately balanced during insertions and deletions.
+</p>
+
+<ul>
+<li>Insertion <i>O(log n)</i></li>
+<li>Deletion <i>O(log n)</i></li>
+<li>Balancing <i>O(1)</i></li>
+
+</ul>
+
+</section>
+<section >
+
+
+<div class="figure">
+<p><img src="./pics/rbt.png" alt="rbt.png" width="100%" height="100%" style="border:0px solid black;" />
+</p>
+</div>
+
+</section>
+<section >
+
+
+<div class="figure">
+<p><img src="./pics/rbtsched.jpg" alt="rbtsched.jpg" width="100%" height="100%" style="border:0px solid black;" />
+</p>
+</div>
+
+</section>
+<section id="slide-org9d6108d">
+<h3 id="org9d6108d">Procedure of CFS</h3>
+<p>
+When the scheduler is invoked to run a new process, the operation of the scheduler is as follows:
+</p>
+
+<ol>
+<li>The leftmost node of the scheduling tree is chosen (as it will have the lowest spent execution time), and sent for execution.</li>
+<li>If the process completes execution, remove it.</li>
+<li>If the process reaches its maximum execution time or is otherwise stopped (voluntarily or via interrupt) it is reinserted into the scheduling tree based on its new spent execution time.</li>
+<li>The new leftmost node will then be selected from the tree, repeating the iteration.</li>
+
+</ol>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc9aec15">
+<h2 id="orgc9aec15">Thank You!</h2>
 </section>
 </section>
 </div>
