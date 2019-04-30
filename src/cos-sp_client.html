@@ -26,18 +26,18 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">COS Senior Project</h1><h2 class="author">Martin Nestorov</h2><p class="date">Created: 2019-03-12 Tue 15:43</p>
+<section id="sec-title-slide"><h1 class="title">COS Senior Project</h1><h2 class="author">Martin Nestorov</h2><p class="date">Created: 2019-04-30 Tue 08:44</p>
 </section>
 
 <section>
-<section id="slide-org8efd236">
-<h2 id="org8efd236">Analysis of process-scheduling algorithms</h2>
+<section id="slide-orgea4f9cf">
+<h2 id="orgea4f9cf">Analysis of process-scheduling algorithms</h2>
+</section>
+<section >
+
 <p>
 <i>comparison and contrast</i>
 </p>
-
-</section>
-<section >
 
 <p>
 The purpose of this project is to analyze and compare these different algorithms, to show their strengths and weaknesses.
@@ -46,8 +46,8 @@ The purpose of this project is to analyze and compare these different algorithms
 </section>
 </section>
 <section>
-<section id="slide-org85fead9">
-<h2 id="org85fead9">Specification and Analysis</h2>
+<section id="slide-org5e65097">
+<h2 id="org5e65097">Specification and Analysis</h2>
 <p>
 I've set out a few goals with this
 </p>
@@ -57,20 +57,19 @@ I want this project to be:
 </p>
 
 </section>
-<section id="slide-org3892bae">
-<h3 id="org3892bae">From a functional standpoint</h3>
+<section id="slide-org3992be5">
+<h3 id="org3992be5">From a functional standpoint</h3>
 <ul>
 <li class="fragment roll-in">Simple interface</li>
 <li class="fragment roll-in">Be responsive to all inputs</li>
-<li class="fragment roll-in">Have at least 4 algorithms implemented</li>
 <li class="fragment roll-in">Graphs for each algorithm performance</li>
 <li class="fragment roll-in">Be robust!</li>
 
 </ul>
 
 </section>
-<section id="slide-orgb8c24b3">
-<h3 id="orgb8c24b3">And speaking non-functionally</h3>
+<section id="slide-org677ad77">
+<h3 id="org677ad77">And speaking non-functionally</h3>
 <ul>
 <li class="fragment roll-in">Fast and light</li>
 <li class="fragment roll-in">Must have high code quality</li>
@@ -79,19 +78,37 @@ I want this project to be:
 </ul>
 
 </section>
-</section>
-<section>
-<section id="slide-org9fca4f8">
-<h2 id="org9fca4f8">Architecture of Software</h2>
-<p>
-<b>Procedural system</b>
+<section id="slide-orgf0d1ee4">
+<h3 id="orgf0d1ee4">Pipeline of Software</h3>
+
+<div class="figure">
+<p><img src="./pics/pipelin.jpg" alt="pipelin.jpg" width="80%" height="80%" style="border:0px solid black;" />
 </p>
+</div>
 
 </section>
 </section>
 <section>
-<section id="slide-org160e078">
-<h2 id="org160e078">Implementation and Technologies</h2>
+<section id="slide-org0334ba4">
+<h2 id="org0334ba4">Architecture of Software</h2>
+<p>
+<b>MVC</b>
+</p>
+
+</section>
+<section >
+
+
+<div class="figure">
+<p><img src="./pics/component.jpg" alt="component.jpg" width="100%" height="100%" style="border:0px solid black;" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgbcf6d39">
+<h2 id="orgbcf6d39">Implementation and Technologies</h2>
 </section>
 <section >
 
@@ -115,48 +132,160 @@ I want this project to be:
 </section>
 </section>
 <section>
-<section id="slide-orgef49f70">
-<h2 id="orgef49f70">Done until now</h2>
+<section id="slide-orgf1170f5">
+<h2 id="orgf1170f5">Types of Scheduling Algorithms</h2>
 <ul>
-<li class="fragment roll-in">FCFS</li>
-<li class="fragment roll-in">SJF</li>
-<li class="fragment roll-in">RR</li>
+<li class="fragment roll-in">First Come First Serve</li>
+<li class="fragment roll-in">Shortest Job First V1</li>
+<li class="fragment roll-in">Shortest Job First V2</li>
+<li class="fragment roll-in">Round Robbin</li>
+<li class="fragment roll-in">Priority Job First</li>
+<li class="fragment roll-in">Completely Fair Scheduler</li>
 
 </ul>
 
 </section>
-<section id="slide-org375bf0d">
-<h3 id="org375bf0d">Some demo code</h3>
-<div class="org-src-container">
+<section >
 
-<pre><code class="c++" >void scheduler::fcfs()
-{
-    average_wait_time = 0;
-    pool::eval_prcs_prty();
-    auto pit = pool::ready_queue.begin();
-    while (pit != pool::ready_queue.end())
-    {
-	exec(pit, pit->get_ttl());
+<p>
+<b>System Types</b> can be either <i>Interactive</i>, <i>Real-Time</i>, and <i>Batch</i>, with sub-types being preemptive or non-preemptive.
+</p>
 
-	dispatcher::context_switch(pit, pit->get_ttl());
+</section>
+</section>
+<section>
+<section id="slide-orge6d9ffd">
+<h2 id="orge6d9ffd">A Word about processes</h2>
+<p>
+Processes need to be simulated, thus their work is to <i>sleep</i> and be scheduled. We take it as a given that the processes will be normally distributed over a time range.
+</p>
 
-	PSAscreen::get().draw_process_exec(average_wait_time, *pit, pool::done_queue);
-    }
-}
-</code></pre>
+</section>
+<section >
+
+
+<div class="figure">
+<p><img src="./pics/process.png" alt="process.png" width="100%" height="100%" style="border:0px solid black;" />
+</p>
 </div>
 
 </section>
 </section>
 <section>
-<section id="slide-orge967f1d">
-<h2 id="orge967f1d">What is to be done</h2>
+<section id="slide-orgdcbc132">
+<h2 id="orgdcbc132">Shortest Job First V2</h2>
 <ul>
-<li class="fragment roll-in">CFS (linux scheduler)</li>
-<li class="fragment roll-in">Multilevel Queue</li>
-<li class="fragment roll-in">Priority inversion</li>
+<li>Uses predictions to estimate next burst</li>
+<li>More optimal than FCFS</li>
+<li>Not applicable to real world</li>
 
 </ul>
+
+</section>
+<section id="slide-org127aa6b">
+<h3 id="org127aa6b">Exponential Average Calculation</h3>
+
+<div class="figure">
+<p><img src="./pics/expoavg.png" alt="expoavg.png" width="100%" height="100%" style="border:0px solid black;" />
+</p>
+</div>
+
+</section>
+<section >
+
+
+<div class="figure">
+<p><img src="./pics/sjf.png" alt="sjf.png" width="100%" height="100%" style="border:0px solid black;" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org1ecdcb9">
+<h2 id="org1ecdcb9">Round Robin</h2>
+<ul>
+<li>Used on preemptive systems</li>
+<li>Optimal</li>
+<li>Allows for more fair distribution of execution</li>
+<li>Used in modern systems</li>
+
+</ul>
+
+</section>
+<section >
+
+
+<div class="figure">
+<p><img src="./pics/rr.png" alt="rr.png" width="100%" height="100%" style="border:0px solid black;" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgce8aa52">
+<h2 id="orgce8aa52">Completely Fair Scheduler</h2>
+<ul>
+<li>Used as the Linux Scheduler</li>
+<li>Implemented via Red-Black Tree</li>
+<li>Based on the idea of fair distribution of processes</li>
+<li>Optimal</li>
+
+</ul>
+
+</section>
+<section id="slide-orgfd91206">
+<h3 id="orgfd91206">Red-Black Tree Structure</h3>
+<p>
+A Red-Black Tree is a kind of self-balancing binary search tree. Each node of the binary tree has an extra bit, often interpreted as the color of the node. These color bits are used to ensure the tree remains approximately balanced during insertions and deletions.
+</p>
+
+<ul>
+<li>Insertion <i>O(log n)</i></li>
+<li>Deletion <i>O(log n)</i></li>
+<li>Balancing <i>O(1)</i></li>
+
+</ul>
+
+</section>
+<section >
+
+
+<div class="figure">
+<p><img src="./pics/rbt.png" alt="rbt.png" width="100%" height="100%" style="border:0px solid black;" />
+</p>
+</div>
+
+</section>
+<section >
+
+
+<div class="figure">
+<p><img src="./pics/rbtsched.jpg" alt="rbtsched.jpg" width="100%" height="100%" style="border:0px solid black;" />
+</p>
+</div>
+
+</section>
+<section id="slide-org80ead2b">
+<h3 id="org80ead2b">Procedure of CFS</h3>
+<p>
+When the scheduler is invoked to run a new process, the operation of the scheduler is as follows:
+</p>
+
+<ol>
+<li>The leftmost node of the scheduling tree is chosen (as it will have the lowest spent execution time), and sent for execution.</li>
+<li>If the process completes execution, remove it.</li>
+<li>If the process reaches its maximum execution time or is otherwise stopped (voluntarily or via interrupt) it is reinserted into the scheduling tree based on its new spent execution time.</li>
+<li>The new leftmost node will then be selected from the tree, repeating the iteration.</li>
+
+</ol>
+
+</section>
+</section>
+<section>
+<section id="slide-org7cb7d2b">
+<h2 id="org7cb7d2b">Thank You!</h2>
 </section>
 </section>
 </div>

@@ -13,9 +13,9 @@
 
 * Analysis of process-scheduling algorithms
 
-/comparison and contrast/
-
 #+REVEAL: split
+
+/comparison and contrast/
 
 The purpose of this project is to analyze and compare these different algorithms, to show their strengths and weaknesses.
 
@@ -30,7 +30,6 @@ I want this project to be:
 #+ATTR_REVEAL: :frag (roll-in)
 - Simple interface
 - Be responsive to all inputs
-- Have at least 4 algorithms implemented
 - Graphs for each algorithm performance
 - Be robust!
 
@@ -41,9 +40,19 @@ I want this project to be:
 - Must have high code quality
 - Be easy to build and port
 
+** Pipeline of Software
+
+#+ATTR_HTML: :width 80% :height 80% :style border:0px solid black;
+[[./pics/pipelin.jpg]]
+
 * Architecture of Software
 
-*Procedural system*
+*MVC*
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/component.jpg]]
 
 * Implementation and Technologies
 
@@ -57,36 +66,89 @@ I want this project to be:
 #+ATTR_HTML: :width 50% :height 50% :style border:0px solid black;
 [[./pics/term.png]]
 
-* Done until now
+* Types of Scheduling Algorithms
 
 #+ATTR_REVEAL: :frag (roll-in)
-- FCFS
-- SJF
-- RR
+- First Come First Serve
+- Shortest Job First V1
+- Shortest Job First V2
+- Round Robbin
+- Priority Job First
+- Completely Fair Scheduler
 
-** Some demo code
+#+REVEAL: split
 
-#+BEGIN_SRC cpp
-void scheduler::fcfs()
-{
-    average_wait_time = 0;
-    pool::eval_prcs_prty();
-    auto pit = pool::ready_queue.begin();
-    while (pit != pool::ready_queue.end())
-    {
-	exec(pit, pit->get_ttl());
+*System Types* can be either /Interactive/, /Real-Time/, and /Batch/, with sub-types being preemptive or non-preemptive.
 
-	dispatcher::context_switch(pit, pit->get_ttl());
+* A Word about processes
 
-	PSAscreen::get().draw_process_exec(average_wait_time,
-	                                   *pit, pool::done_queue);
-    }
-}
-#+END_SRC
+Processes need to be simulated, thus their work is to /sleep/ and be scheduled. We take it as a given that the processes will be normally distributed over a time range.
 
-* What is to be done
+#+REVEAL: split
 
-#+ATTR_REVEAL: :frag (roll-in)
-- CFS (linux scheduler)
-- Multilevel Queue
-- Priority inversion
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/process.png]]
+
+* Shortest Job First V2
+
+- Uses predictions to estimate next burst
+- More optimal than FCFS
+- Not applicable to real world
+
+** Exponential Average Calculation
+
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/expoavg.png]]
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/sjf.png]]
+
+* Round Robin
+
+- Used on preemptive systems
+- Optimal
+- Allows for more fair distribution of execution
+- Used in modern systems
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/rr.png]]
+
+* Completely Fair Scheduler
+
+- Used as the Linux Scheduler
+- Implemented via Red-Black Tree
+- Based on the idea of fair distribution of processes
+- Optimal
+
+** Red-Black Tree Structure
+
+A Red-Black Tree is a kind of self-balancing binary search tree. Each node of the binary tree has an extra bit, often interpreted as the color of the node. These color bits are used to ensure the tree remains approximately balanced during insertions and deletions.
+
+- Insertion /O(log n)/
+- Deletion /O(log n)/
+- Balancing /O(1)/
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/rbt.png]]
+
+#+REVEAL: split
+
+#+ATTR_HTML: :width 100% :height 100% :style border:0px solid black;
+[[./pics/rbtsched.jpg]]
+
+** Procedure of CFS
+
+When the scheduler is invoked to run a new process, the operation of the scheduler is as follows:
+
+1. The leftmost node of the scheduling tree is chosen (as it will have the lowest spent execution time), and sent for execution.
+2. If the process completes execution, remove it.
+3. If the process reaches its maximum execution time or is otherwise stopped (voluntarily or via interrupt) it is reinserted into the scheduling tree based on its new spent execution time.
+4. The new leftmost node will then be selected from the tree, repeating the iteration.
+
+* Thank You!
